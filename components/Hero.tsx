@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { goal } from '@/lib/metrics';
-import { FREE_LIMITS, IMAGE_PACKS, TRIAL } from '@/config/pricing';
+import { IMAGE_PACKS, TRIAL } from '@/config/pricing';
 
 /**
  * Hero displays the main headline, subheadline and primary call-to-action
