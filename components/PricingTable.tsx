@@ -13,64 +13,69 @@ export default function PricingTable() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Free tier */}
-      <div className="border border-border rounded-xl p-6 bg-panel flex flex-col">
-        <h3 className="text-2xl font-semibold text-text-primary mb-2">Free</h3>
-        <p className="text-text-secondary text-sm mb-4">Бесплатный доступ с ежедневными лимитами</p>
-        <ul className="space-y-1 text-sm mb-6">
+      <div className="bg-panel/70 border border-border rounded-2xl p-6 shadow-panel flex flex-col">
+        <h3 className="text-xl font-semibold">Free</h3>
+        <p className="text-3xl font-extrabold tracking-tight mt-2">0 ₽</p>
+        <p className="text-sm text-muted mt-2">Бесплатный доступ с ежедневными лимитами</p>
+        <ul className="mt-4 space-y-2 text-sm text-muted">
           <li>до {FREE_LIMITS.textPerDay.toLocaleString()} символов текста/день</li>
           <li>до {FREE_LIMITS.imagesPerDay} изображений/день</li>
           <li>Chat + Images</li>
         </ul>
-        <div className="mt-auto">
+        <div className="mt-auto pt-6">
           <Link
             href={`${billingUrl}?trial=1`}
             data-goal="click_trial"
             onClick={() => goal('click_trial')}
-            className="block text-center w-full px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-lg"
+            className="block text-center w-full rounded-2xl bg-accent hover:bg-accent-hover px-5 py-3 font-semibold shadow-soft"
           >
-            Активировать за {TRIAL.priceRub} ₽
+            Начать бесплатно
           </Link>
         </div>
       </div>
       {/* PRO tier */}
-      <div className="border border-border rounded-xl p-6 bg-panel flex flex-col">
-        <h3 className="text-2xl font-semibold text-text-primary mb-2">PRO Trial</h3>
-        <p className="text-text-secondary text-sm mb-4">
-          {TRIAL.priceRub} ₽ за {TRIAL.days} дня, затем автопродление {TRIAL.renewRub} ₽/{TRIAL.renewDays} дней
+      <div className="bg-panel/70 border border-border rounded-2xl p-6 shadow-panel flex flex-col">
+        <h3 className="text-xl font-semibold">PRO Trial</h3>
+        <p className="text-3xl font-extrabold tracking-tight mt-2">{TRIAL.priceRub} ₽</p>
+        <p className="text-sm text-muted mt-2">
+          за {TRIAL.days} дня, затем автопродление {TRIAL.renewRub} ₽/{TRIAL.renewDays} дней
         </p>
-        <ul className="space-y-1 text-sm mb-6">
+        <ul className="mt-4 space-y-2 text-sm text-muted">
           <li>Безлимит сообщений (soft rate-limit)</li>
           <li>Приоритетная очередь</li>
           <li>Поддержка Chat + Images</li>
         </ul>
-        <div className="mt-auto">
+        <div className="mt-auto pt-6">
           <Link
             href={`${billingUrl}?trial=1`}
             data-goal="click_trial"
             onClick={() => goal('click_trial')}
-            className="block text-center w-full px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-lg"
+            className="block text-center w-full rounded-2xl bg-accent hover:bg-accent-hover px-5 py-3 font-semibold shadow-soft"
           >
             Начать за {TRIAL.priceRub} ₽
           </Link>
-          <p className="text-xs text-text-secondary mt-2 text-center">
+          <p className="text-xs text-muted mt-3 text-center">
             Деньги списываются автоматически — автопродление можно отключить на странице “Отменить подписку”.
           </p>
         </div>
       </div>
       {/* Image packs */}
-      <div className="border border-border rounded-xl p-6 bg-panel flex flex-col">
-        <h3 className="text-2xl font-semibold text-text-primary mb-2">Пакеты изображений</h3>
-        <p className="text-text-secondary text-sm mb-4">Дополнительные изображения для Free и PRO</p>
-        <div className="flex flex-col space-y-4 mb-4">
+      <div className="bg-panel/70 border border-border rounded-2xl p-6 shadow-panel flex flex-col">
+        <h3 className="text-xl font-semibold">Пакеты изображений</h3>
+        <p className="text-3xl font-extrabold tracking-tight mt-2">от {IMAGE_PACKS[0].priceRub} ₽</p>
+        <p className="text-sm text-muted mt-2">Дополнительные изображения для Free и PRO</p>
+        <div className="mt-4 space-y-3">
           {IMAGE_PACKS.map((pack) => (
-            <div key={pack.count} className="flex justify-between items-center border border-border rounded-lg p-3">
-              <span>{pack.count} изображений</span>
-              <span className="font-semibold">{pack.priceRub} ₽</span>
+            <div key={pack.count} className="flex flex-wrap items-center justify-between gap-3 border border-border/60 rounded-2xl p-4 bg-panel/40">
+              <div>
+                <p className="font-semibold">{pack.count} изображений</p>
+                <p className="text-sm text-muted">{pack.priceRub} ₽</p>
+              </div>
               <Link
                 href={`${billingUrl}?${pack.query}`}
                 onClick={() => goal(`click_buy_pack_${pack.count}`)}
                 data-goal={`click_buy_pack_${pack.count}`}
-                className="bg-accent hover:bg-accent-hover text-white px-3 py-1 rounded-md text-sm"
+                className="rounded-2xl bg-accent hover:bg-accent-hover px-5 py-3 font-semibold shadow-soft text-sm"
               >
                 Купить
               </Link>

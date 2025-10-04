@@ -57,29 +57,36 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           />
         )}
       </head>
-      <body className={`${inter.className} bg-bg text-text-primary`}> 
-        <header className="border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <Link href="/" className="text-xl font-semibold">
+      <body className={`${inter.className} bg-bg text-text`}>
+        <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-black/40 border-b border-border">
+          <div className="container h-14 flex items-center justify-between">
+            <Link href="/" className="font-semibold tracking-tight">
               ПростоИИ
             </Link>
-            <nav className="space-x-4 hidden sm:block">
-              <Link href="/pricing" className="hover:text-accent">
+            <nav className="hidden md:flex gap-6 text-sm text-muted">
+              <Link href="/pricing" className="hover:text-text">
                 Тарифы
               </Link>
-              <Link href="/docs/offer" className="hover:text-accent">
+              <Link href="/docs/offer" className="hover:text-text">
                 Оферта
               </Link>
-              <Link href="/docs/privacy" className="hover:text-accent">
+              <Link href="/docs/privacy" className="hover:text-text">
                 Конфиденциальность
               </Link>
-              <Link href="/cancel" className="hover:text-accent">
+              <Link href="/cancel" className="hover:text-text">
                 Отмена
               </Link>
-              <Link href="/contact" className="hover:text-accent">
+              <Link href="/contact" className="hover:text-text">
                 Контакты
               </Link>
             </nav>
+            <Link
+              href={process.env.NEXT_PUBLIC_BILLING_URL || '#'}
+              className="rounded-2xl bg-accent hover:bg-accent-hover px-4 py-2 text-sm font-medium"
+              data-goal="click_trial"
+            >
+              Начать за 1 ₽
+            </Link>
           </div>
         </header>
         <main>{children}</main>

@@ -8,42 +8,39 @@ import { IMAGE_PACKS, TRIAL } from '@/config/pricing';
  * highlights the key offering (trial and subscription).
  */
 export default function Hero() {
-  const billing = process.env.NEXT_PUBLIC_BILLING_URL || '#';
-  const app = process.env.NEXT_PUBLIC_APP_URL || '#';
+  const billingUrl = process.env.NEXT_PUBLIC_BILLING_URL || '#';
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || '#';
   return (
-    <div className="text-center space-y-6">
-      <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
-        ПростоИИ — текст и картинки по&nbsp;подписке
+    <div className="text-center space-y-8 pt-12 sm:pt-16">
+      <h1 className="text-5xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.02em]">
+        ПростоИИ — текст и картинки по подписке
       </h1>
-      <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-        Генерация текстов и изображений на мощных моделях по API. Прозрачные лимиты,
-        пробный доступ {TRIAL.priceRub} ₽ на {TRIAL.days} дня.
+      <p className="max-w-2xl mx-auto text-lg text-muted">
+        Генерация текстов и изображений на мощных моделях по API.
+        Прозрачные лимиты, пробный доступ 1 ₽ на 3 дня.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="flex items-center justify-center gap-3">
         <Link
-          href={`${billing}?trial=1`}
-          onClick={() => goal('click_trial')}
-          className="px-6 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent-hover"
+          href={`${billingUrl}?trial=1`}
+          className="rounded-2xl bg-accent hover:bg-accent-hover px-6 py-3 text-base font-semibold shadow-soft"
           data-goal="click_trial"
+          onClick={() => goal('click_trial')}
         >
-          Начать за {TRIAL.priceRub} ₽
+          Начать за 1 ₽
         </Link>
         <Link
-          href={app}
-          onClick={() => goal('click_open_app')}
-          className="px-6 py-3 bg-panel text-text-primary rounded-xl font-semibold border border-border hover:bg-border"
+          href={appUrl}
+          className="rounded-2xl border border-border bg-panel px-6 py-3 text-base font-medium hover:border-accent"
           data-goal="click_open_app"
+          onClick={() => goal('click_open_app')}
         >
           Открыть приложение
         </Link>
       </div>
-      <div className="flex flex-wrap justify-center gap-2 text-sm text-text-secondary mt-4">
-        <span className="px-3 py-1 bg-panel rounded-full border border-border">Chat + Images</span>
-        <span className="px-3 py-1 bg-panel rounded-full border border-border">Trial {TRIAL.priceRub} ₽/{TRIAL.days} дня</span>
-        <span className="px-3 py-1 bg-panel rounded-full border border-border">Автопродление {TRIAL.renewRub} ₽/{TRIAL.renewDays} дней</span>
-        {IMAGE_PACKS.map(pack => (
-          <span key={pack.count} className="px-3 py-1 bg-panel rounded-full border border-border">
-            {pack.count} изображений
+      <div className="flex flex-wrap gap-2 justify-center">
+        {['Chat + Images', 'Trial 1 ₽/3 дня', 'Автопродление 949 ₽/7 дней', 'Пакеты 10/20/50'].map(t => (
+          <span key={t} className="rounded-2xl border border-border/80 bg-panel px-3 py-1 text-sm text-muted">
+            {t}
           </span>
         ))}
       </div>

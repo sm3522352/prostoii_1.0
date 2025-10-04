@@ -19,11 +19,11 @@ export default function HowItWorks() {
     }
   ];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {steps.map((step) => (
-        <div key={step.title} className="flex flex-col space-y-2 text-center md:text-left">
-          <h3 className="text-xl font-semibold text-text-primary">{step.title}</h3>
-          <p className="text-text-secondary text-sm">{step.description}</p>
+        <div key={step.title} className="bg-panel/70 backdrop-blur rounded-2xl p-6 border border-border shadow-panel space-y-2">
+          <h3 className="text-lg font-semibold">{step.title}</h3>
+          <p className="text-sm text-muted">{step.description}</p>
         </div>
       ))}
     </div>

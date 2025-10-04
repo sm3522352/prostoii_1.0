@@ -2,12 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom global styles */
+:root {
+  --bg:#0B0F14; --panel:#121821; --text:#E8ECEF; --muted:#B7C2CC;
+  --accent:#764AEF; --accent-hover:#6A3DE3; --border:#1E2630;
+}
+
+html, body { height: 100%; }
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  background: radial-gradient(1200px 600px at 50% -200px, rgba(118,74,239,.18), transparent 60%),
+              linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%),
+              var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,4 +26,12 @@ body {
 
 main {
   flex: 1;
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 10px;
 }
