@@ -1,42 +1,42 @@
-import { useState } from 'react';
-import Section from '@/components/Section';
-import { goal } from '@/lib/metrics';
-import { useEffect } from 'react';
+"use client";
+
+import { useState, useEffect } from "react";
+import Section from "@/components/Section";
+import { goal } from "@/lib/metrics";
 
 export default function CancelPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
-    goal('view_cancel');
+    goal("view_cancel");
   }, []);
-  const contact = process.env.NEXT_PUBLIC_CONTACT_EMAIL || '';
-  const mailto = `mailto:${contact}?subject=Отмена%20подписки&body=Email:%20${encodeURIComponent(email)}`;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const mailto = `mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}?subject=Отмена%20подписки&body=Email:%20${email}`;
+    window.location.href = mailto;
+  };
+
   return (
-    <Section className="pt-12 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-4 text-center">Отмена подписки</h1>
-      <p className="text-text-secondary text-sm mb-6 text-center">
-        Введите адрес электронной почты, на который оформлена подписка. Мы свяжемся с вами для подтверждения отмены. Также
-        отмену можно сделать из личного кабинета.
+    <Section>
+      <h1 className="text-2xl font-semibold mb-4">Отмена подписки</h1>
+      <p className="text-muted mb-6">
+        Укажите ваш email, чтобы отменить автопродление подписки. Вы также можете отменить её в личном кабинете.
       </p>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          window.location.href = mailto;
-        }}
-        className="space-y-4"
-      >
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-sm">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Ваш email"
           required
-          placeholder="Ваш e-mail"
-          className="w-full px-4 py-3 rounded-lg bg-panel border border-border text-text-primary focus:outline-none focus:ring-2 focus:ring-accent"
+          className="w-full rounded-lg border border-gray-700 bg-gray-900 p-3"
         />
         <button
           type="submit"
-          className="w-full px-4 py-3 bg-accent text-white rounded-lg hover:bg-accent-hover"
+          className="w-full bg-accent hover:bg-accent-hover text-white rounded-lg py-2 font-medium"
         >
-          Отправить запрос
+          Отправить
         </button>
       </form>
     </Section>
