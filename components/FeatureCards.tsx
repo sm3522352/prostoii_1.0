@@ -4,9 +4,9 @@
  */
 function FeatureCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="bg-panel rounded-xl p-6 border border-border flex flex-col items-start space-y-2">
-      <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
-      <p className="text-text-secondary text-sm">{description}</p>
+    <div className="bg-panel/70 backdrop-blur rounded-2xl p-6 border border-border shadow-panel">
+      <h3 className="text-lg font-semibold mb-1">{title}</h3>
+      <p className="text-sm text-muted">{description}</p>
     </div>
   );
 }
